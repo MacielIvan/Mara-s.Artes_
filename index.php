@@ -1,3 +1,28 @@
+<?php
+
+    
+
+    if(isset($_POST["submit"]))
+    {
+    include_once("config.php");
+    
+    $nome = $_POST["nome"];
+    $numero = $_POST["numero_telefone"];
+    $email = $_POST["email"];
+    $modelo = $_POST["modelo"];
+    $cor = $_POST["cor"];
+    $tamanho = $_POST["tamanho"];
+
+    $result = mysqli_query($conexao, "INSERT INTO pedidos(nome,numero,email,modelo,cor,tamanho)
+    VALUES('$nome','$numero','$email','$modelo','$cor','$tamanho')");
+
+    echo "<script>
+    alert('Seu pedido foi enviado com sucesso')
+    </script>";
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +35,7 @@
 
 <body>
     <div class="box">
-        <form action="">
+        <form action="index.php" method="POST">
             <fieldset>
                 <legend><b>Monte seu chinelo</b></legend>
 
@@ -46,7 +71,7 @@
 
                     <br>
 
-                    <select class="customizar">
+                    <select class="customizar" name="modelo">
                         <option>Top Luxuosa</option>
                         <option>Top Simples</option>
                         <option>Slim Luxuosa</option>
@@ -62,7 +87,7 @@
 
                     <br>
 
-                    <select class="customizar">
+                    <select class="customizar" name="cor">
                         <option>Amarelo</option>
                         <option>Azul</option>
                         <option>Bege</option>
@@ -87,7 +112,7 @@
 
                     <br>
                     
-                    <select class="customizar">
+                    <select class="customizar" name="tamanho">
                         <option>33/34</option>
                         <option>35/36</option>
                         <option>37/38</option>
